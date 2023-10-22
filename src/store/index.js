@@ -28,7 +28,7 @@ const store = new Vuex.Store({
   },
   actions: {
     async getAllNews({ commit, state }, payload) {
-      let mainUrl = 'http://newsapi.org/v2/top-headlines?';
+      let mainUrl = 'https://newsapi.org/v2/top-headlines?';
       let queryParamas = `q=${payload.search}&country=${payload.country}&category=${payload.category}&pageSize=30&page=${state.currentPage}&apiKey=49a11d744df34e389a14b1af7494d6a1`;
       fetch(mainUrl + queryParamas)
         .then((response) => {
