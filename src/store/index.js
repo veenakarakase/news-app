@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import moment from "moment";
 
 Vue.use(Vuex)
 
@@ -29,7 +30,8 @@ const store = new Vuex.Store({
   actions: {
     async getAllNews({ commit, state }, payload) {
       let mainUrl = 'https://newsapi.org/v2/top-headlines?';
-      let queryParamas = `q=${payload.search}&country=${payload.country}&category=${payload.category}&pageSize=30&page=${state.currentPage}&apiKey=49a11d744df34e389a14b1af7494d6a1`;
+      let date = moment(new Date()).format('l');
+      let queryParamas = `from=${date}&q=${payload.search}&country=${payload.country}&category=${payload.category}&pageSize=30&page=${state.currentPage}&apiKey=49a11d744df34e389a14b1af7494d6a1`;
       fetch(mainUrl + queryParamas)
         .then((response) => {
           return response.json();
