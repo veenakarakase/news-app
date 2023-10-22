@@ -157,19 +157,13 @@ export default {
     ...mapGetters(["currentPageNews", "totalPageNews", "filteredNews"]),
   },
   methods: {
-    ...mapActions([
-      "getNextPage",
-      "getPreviousPage",
-      "getAllNews",
-      "getNewsDetailObject",
-      "getDefaultPage",
-    ]),
+    ...mapActions(["getAllNews", "getNewsDetailObject", "getPage"]),
     async handlePreviousClick() {
-      await this.getPreviousPage();
+      await this.getPage("dec");
       this.fetchDataFromApi();
     },
     async handleNextClick() {
-      await this.getNextPage();
+      await this.getPage("inc");
       this.fetchDataFromApi();
     },
     fetchDataFromApi() {
@@ -181,7 +175,7 @@ export default {
       this.getAllNews(payload);
     },
     async fetchDataFromApiAction() {
-      await this.getDefaultPage();
+      await this.getPage("");
       this.fetchDataFromApi();
     },
     navigate(item) {

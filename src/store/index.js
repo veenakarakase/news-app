@@ -43,15 +43,8 @@ const store = new Vuex.Store({
           // handle the error
         });
     },
-    getNextPage({ commit }) {
-      commit("setCurrentpage", "inc");
-
-    },
-    getPreviousPage({ commit, state }) {
-      commit("setCurrentpage", "dec");
-    },
-    getDefaultPage({ commit }) {
-      commit("setCurrentpage", "");
+    getPage({ commit }, payload) {
+      commit("setCurrentpage", payload);
     },
     getNewsDetailObject({ commit }, payload) {
       commit("setNewsDetails", payload);
